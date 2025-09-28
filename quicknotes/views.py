@@ -1,4 +1,4 @@
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.decorators.http import require_POST
 from .models import Note
@@ -36,3 +36,7 @@ def delete(request, note_id):
     note = get_object_or_404(Note, pk=note_id)
     note.delete()
     return redirect('notes')
+
+def api_notes(request):
+    data = list(Note.objects.all())
+    return JsonResponse( {'notes': data})
