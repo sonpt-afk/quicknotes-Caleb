@@ -1,9 +1,7 @@
-from django.http import HttpResponse, Http404, JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.decorators.http import require_POST
-from .models import Note
-from .forms import NoteForm
-
+from quicknotes.models import Note
+from quicknotes.forms import NoteForm
 
 def notes(request):
     data = Note.objects.all()
